@@ -1,0 +1,540 @@
+\documentclass[twoside, watermark]{zHenriquesLab-StyleBioRxiv}
+\usepackage{blindtext}
+\usepackage{longtable}
+% \documentclass[crop = false]{standalone}
+\usepackage{chemfig}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{seqsplit}
+
+%%%%%%%%%%%%%%%%%%%
+% Shortcuts for common-typed characters and chemicals. 
+\newcommand{\HtwoO}{H$_\text{2}$O} % I type H2O a bunch
+\newcommand{\tmu}{$\mu$} % Make it easier to type mu in regular text.
+\newcommand{\COtwo}{CO$_\text{2}$} % I type CO2 quite a bit too.
+\newcommand{\adductone}{[M+H]+}
+\newcommand{\adducttwo}{[M+H]2+}
+\newcommand{\pgbb}{PG$^\text{Bb}$}
+
+% PG species that are cumbersome to type out due to italic characters and small caps.
+\newcommand{\Z}{Glc\textit{N}Ac-AnhMur\textit{N}Ac}
+\newcommand{\ZAEOG}{Glc\textit{N}Ac-AnhMur\textit{N}Ac-\textsc{l}-Ala-\textsc{d}-Glu-\textsc{l}-Orn(Gly)}
+\newcommand{\ZAEOAAG}{Glc\textit{N}Ac-AnhMur\textit{N}Ac-\textsc{l}-Ala-\textsc{d}-Glu-\textsc{l}-Orn(Gly)-\textsc{d}-Ala-\textsc{d}-Ala}
+\newcommand{\AEOAAG}{\textsc{l}-Ala-\textsc{d}-Glu-\textsc{l}-Orn(Gly)-\textsc{d}-Ala-\textsc{d}-Ala}
+\newcommand{\AEOAA}{\textsc{l}-Ala-\textsc{d}-Glu-\textsc{l}-Orn-\textsc{d}-Ala-\textsc{d}-Ala}
+\newcommand{\AEOG}{\textsc{l}-Ala-\textsc{d}-Glu-\textsc{l}-Orn(Gly)}
+\newcommand{\daladala}{\textsc{d}-Ala-\textsc{d}-Ala}
+
+\newcommand{\NAM}{Mur\textit{N}Ac}
+\newcommand{\AnhNAM}{AnhMur\textit{N}Ac}
+\newcommand{\NAG}{Glc\textit{N}Ac}
+\newcommand{\scl}{\textsc{l}} % small caps l
+\newcommand{\scd}{\textsc{d}} % small caps d
+%%%%%%%%%%%%%%%
+
+
+\usetikzlibrary{shapes.geometric}
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{background layer,main,foreground layer}
+
+
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{McCausland} 
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% ARTICLE SETUP
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Bacterial and host enzymes modulate the inflammatory response produced by the peptidoglycan of the Lyme disease agent}
+\shorttitle{\textit{Borrelia burgdorferi} peptidoglycan metabolism and human immune responses}
+
+\author[1,2,3 \authfn{1}]{Joshua W. McCausland}
+\author[4 \authfn{1}]{Zachary A. Kloos}
+\author[1,3 \authfn{1}]{Irnov Irnov}
+\author[4,5 \authfn{1}]{Nicole D. Sonnert}
+\author[6]{Junhui Zhou}
+\author[6]{Rachel Putnick}
+\author[1,2,3]{Elizabeth A. Mueller}
+\author[8]{Alan C. Steere}
+\author[5]{Noah W. Palm}
+\author[6]{Catherine L. Grimes}
+\author[1,2,3,9,~\Letter]{Christine Jacobs-Wagner}
+
+\affil[1]{Sarafan ChEM-H Institute, Stanford University, Stanford, CA, USA}
+\affil[2]{Department of Biology, Stanford University, Stanford, CA, USA}
+\affil[3]{Howard Hughes Medical Institute, Stanford University, Stanford, CA, USA}
+\affil[4]{Microbiology Program, Yale University, West Haven, Connecticut, USA}
+\affil[5]{Department of Immunology, Yale University School of Medicine, New Haven, CT, USA}
+\affil[6]{Department of Chemistry and Biochemistry, University of Delaware, Neward, DE}
+\affil[7]{Center for Immunology and Inflammatory Diseases, Massachusetts General Hospital and Harvard Medical School, Boston, MA, USA}
+\affil[8]{Department of Microbiology and Immunology, Stanford University School of Medicine, Stanford, CA, USA}
+
+
+\maketitle
+
+%TC:break Abstract
+%the command above serves to have a word count for the abstract
+\begin{abstract}
+The spirochete \textit{Borrelia burgdorferi} causes Lyme disease. In some patients, an excessive, dysregulated proinflammatory immune response can develop in joints leading to persistent arthritis. In such patients, persistence of antigenic \textit{B. burgdorferi} peptidoglycan (\pgbb ) fragments within joint tissues may contribute to the immunopathogenesis, even after appropriate antibiotic treatment. In live \textit{B. burgdorferi} cells, the outer membrane shields the polymeric \pgbb~sacculus from exposure to the immune system. However, unlike most diderm bacteria, \textit{B. burgdorferi} releases \pgbb~turnover products into its environment due to the absence of recycling activity. In this study, we identified the released \pgbb~fragments using a mass spectrometry-based approach. By characterizing the \scl,\scd -carboxypeptidase activity of \textit{B. burgdorferi} protein BB0605 (renamed DacA), we found that \pgbb~turnover largely occurs at sites of \pgbb~synthesis. In parallel, we demonstrated that the lytic transglycosylase activity associated with BB0259 (renamed MltS) releases \pgbb~fragments with 1,6-anhydro bond on their \textit{N}-acetylmuramyl residues. Stimulation of human cell lines with various synthetic \pgbb~fragments revealed that 1,6-anhydromuramyl-containing \pgbb~fragments are poor inducers of a NOD2-dependent immune response relative to their hydrated counterparts. We also showed that the activity of the human \textit{N}-acetylmuramyl-\scl -alanine amidase PGLYRP2, which reduces the immunogenicity of \pgbb~material, is low in joint (synovial) fluids relative to serum. Altogether, our findings suggest that MltS activity helps \textit{B. burgdorferi} evade PG-based immune detection by NOD2 during growth despite shedding \pgbb~fragments and that \pgbb -induced immunopathology likely results from host sensing of \pgbb~material from dead (lysed) spirochetes. Additionally, our results suggest the possibility that natural variation in PGLYRP2 activity may contribute to differences in susceptibility to PG-induced inflammation across tissues and individuals.
+\end{abstract}
+%TC:break main
+%the command above serves to have a word count for the abstract
+
+%\begin{keywords}
+%Peptidoglycan | Borrelia | Lyme arthritis | NOD2
+%\end{keywords}
+
+\begin{corrauthor}
+jacobs-wagner@stanford.edu
+\end{corrauthor}
+
+\vspace{-1.5mm}
+{\scriptsize \textbf{\authfn{1}: These authors contributed equally to this work.}}
+
+\section*{Author summary}
+During bacterial infection, the presence of peptidoglycan—a polymeric element of bacterial cell walls—triggers a host inflammatory response. Although generally protective during acute phases, inflammation, when chronic, can contribute to disease development. Recent work has suggested that the persistence of pro-inflammatory peptidoglycan derived from the Lyme disease spirochete \textit{Borrelia burgdorferi} in joints may contribute to persistent arthritis in some patients despite appropriate antibiotic therapy. Interestingly, \textit{B. burgdorferi} sheds peptidoglycan turnover products into the environment during growth. Here, we show that these shed products from live spirochetes are poor effectors of an immune response by the human NOD2 immune receptor due to the formation of an anhydro bond on the \textit{N}-acetyl-muramic residue during peptidoglycan hydrolysis by a \textit{B. burgdorferi} lytic transglycosylase. We also show that human \textit{N}-acetylmuramyl-\scl -alanine amidase activity, which abrogates the NOD2-dependent response to the immunogenic peptidoglycan isolated from lysed \textit{B. burgdorferi}, is low in human joint fluids relative to serum. Based on our findings, we propose that immunopathogenesis by peptidoglycan material more likely derives from lysed spirochetes (killed by an immune attack or antibiotics) than live ones and that the level of human peptidoglycan hydrolytic enzymes across tissues and individuals influences susceptibility to chronic inflammation.
+
+\section*{Introduction}
+Lyme disease is the most prevalent and fastest-growing vector-borne disease in the United States and Northern Europe \cite{Kugeler2024,Mead2015,Mead2021,Pustijanac2024}. It is caused by \textit{Borrelia burgdorferi}, a spirochete that is transmitted by \textit{Ixodes} ticks. This pathogen circulates in nature through transmission and persistence in vertebrate reservoirs including rodents, birds, and lizards \cite{Radolf2012}. Infection in humans is often apparent by the presence of a slowly expanding skin lesion at the site of tick bite. In the absence of appropriate diagnosis and antibiotic therapy, \textit{B. burgdorferi} can disseminate widely to extracutaneous tissues, producing multisystem clinical manifestations such as flu-like symptoms, meningitis, carditis, and often arthritis, a late disease manifestation.
+
+\vspace{1mm}
+\textit{B. burgdorferi} is not known to produce toxins that damage host cells. Rather, clinical symptomatology is caused by the host inflammatory response \cite{Arvikar2015}. In some patients with Lyme arthritis, an exaggerated, dysregulated proinflammatory immune response develops, which may lead to persistent arthritis after appropriate antibiotic therapy. This response is often referred to as postinfectious, antibiotic-refractory Lyme arthritis. The consequences in joint (synovial) tissue, which is the target of the immune response, include vascular damage, autoimmune and cytotoxic reactions, and massive fibroblast proliferation and fibrosis \cite{Lochhead2021}. Lyme arthritis has also been linked to the persistence of antigenic \textit{B. burgdorferi} peptidoglycan in the joint of some patients even in the postinfectious period \cite{Jutras2019}. Peptidoglycan (PG), a well-known immunogen \cite{Wolf2018}, is an essential component of bacterial cell walls. It is made of glycan strands of repeating disaccharide-peptide units that form a crosslinked polymeric structure (known as a sacculus) around the bacterial cytoplasmic membrane (\textbf{Figure \ref{fig: fig1}A}). During growth, new disaccharide-peptides are incorporated into the existing PG sacculus. In \textit{B. burgdorferi}, these subunits consist of \textit{N}-acetyl-glucosamine (\NAG ) and \textit{N}-acetyl-muramic acid (\NAM ) linked to a peptide chain made of \scl -alanine (\scl -Ala), \scd -glutamic acid (\scd -Glu), \scl -ornithine (\scl -Orn), and two \scd -alanine residues (\scd -Ala), with \scl -Orn being connected to a single glycine (Gly) \cite{Beck1990,Jutras2019}. The growing PG polymer is then processed through crosslinking and remodeling enzymes, leading to the mature sacculus \cite{Jutras2019}. 
+
+\vspace{1mm}
+The B. burgdorferi PG (\pgbb ) has been shown to induce inflammation in mammalian cell cultures, C3H/HeJ mice, and humans \cite{Beck1990,Jutras2019}. \pgbb detection by the innate immune system involves NOD2 \cite{Jutras2019}, a mammalian immune receptor stimulated by the \NAM-\scl-Ala-\scd-Glu motif \cite{Chamaillard2003,Girardin2003} present in the \pgbb. The other PG-sensing immune receptor NOD1 does not play a role because the \pgbb~peptide stem carries an Orn instead of the NOD1-sensing diaminopimelic acid (DAP) residue typically found in the PG of Gram-negative bacteria \cite{Girardin2003,Jutras2019}. Recent evidence suggests that \pgbb~material can persist in the synovial fluids of Lyme arthritis patients, even months to a year after antibiotic treatment \cite{Jutras2019}. Furthermore, these patients have a high level of anti-\pgbb~IgG antibodies detected within the synovial fluid of the affected joint \cite{Jutras2019}. The level of NOD2 transcripts was also found to be elevated in the inflamed synovial tissues of Lyme arthritis patients long after resolution of the acute infection \cite{Lochhead2019}. Mouse and in vitro cell experiments have also linked NOD2 to proinflammatory cytokine production and immune tolerance during \textit{B. burgdorferi} infection \cite{Oosting2010,Petnicki2011}. These observations led to the hypothesis that the persistence of \pgbb~contributes to the pathogenesis of Lyme arthritis \cite{Jutras2019} by acting as an adjuvant that stimulates chronic inflammation and/or by bolstering T cell proinflammatory immunoreactivity with autoantigens \cite{Rouse2024}.
+
+\vspace{1mm}
+In live \textit{B. burgdorferi} cells, the outer membrane shields the PG sacculus from immune detection by the host. However, the \pgbb~sacculus becomes exposed to the immune system when \textit{B. burgdorferi} loses outer membrane integrity and lyses due to the harsh conditions in the host (e.g., innate immunity, antibiotic treatment). Persistence of \pgbb~material derived from dead spirochetes could therefore contribute to immunopathogenesis \cite{Jutras2019}. Interestingly, live spirochetes degrade $\approx$40\% of their PG during growth but, unlike \textit{Escherichia coli} and many other diderm bacteria \cite{Park2008}, \textit{B. burgdorferi} does not recycle PG turnover products during growth \cite{Jutras2019}. As a result, growing \textit{B. burgdorferi} cells continuously release \pgbb~fragments into the culture supernatant, possibly through diffusion across the outer membrane through porins. 
+
+\vspace{1mm}
+These observations raise a number of questions. If live \textit{B. burgdorferi} does indeed release \pgbb~fragments into the environment during growth, how does this pathogen evade PG-based immune recognition to enable persistence within their host? Could the \pgbb~material shed from live \textit{B. burgdorferi} cells somehow be chemically distinct from the immunogenic \pgbb~of dead cells to avoid detection? Do PG hydrolases produced by \textit{B. burgdorferi} and/or the host play a role in modulating immune response and pathogenesis? We sought to address these questions by characterizing the \pgbb~fragments released by live \textit{B. burgdorferi} cells during growth and by identifying both bacterial and host factors that modulate \pgbb-induced immune responses. 
+
+
+\section*{Results}
+\subsection*{Multiple B. burgdorferi strains shed the same PG fragments during growth}
+Our first goal was to identify the major species of \pgbb~fragments that \textit{B. burgdorferi} releases into its culture medium during growth. This was a non-trivial task, as laboratory cultures of \textit{B. burgdorferi} currently require the use of a highly complex, undefined medium (e.g., BSK-II, which includes \NAG, glucose, CMRL medium, bovine serum albumin, rabbit serum, neopeptone, and yeastolate). To find rare \pgbb~fragments in a complex mixture of other molecules in BSK-II, we therefore developed a pipeline in which mass features enriched in the culture supernatant over the cell-free growth medium are screened against a library of simulated \pgbb~fragment masses (\textbf{Figure \ref{fig: fig1}B}, see Materials and Methods). Briefly, replicates of a clonal derivative of the \textit{B. burgdorferi} type strain B31 (B31 IR) were grown in BSK-II to late exponential phase (i.e., density of $\approx 5 * 10^7$ cells/mL). Culture supernatants were then harvested and analyzed by liquid chromatography (LC) coupled to mass spectrometry (MS) in comparison to the cell free BSK-II medium (“medium-only”) control (\textbf{Figure \ref{fig: fig1}B}).
+
+
+
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Figure_1_Muropeptide_ID.pdf}
+\caption{Mass spectrometry of \textit{B. burgdorferi} culture supernatant identifies five peptidoglycan monomeric species. \textbf{A.} Schematic showing the chemical composition of the \textit{B. burgdorferi} peptidoglycan (\pgbb ) and its location between the cytoplasmic and outer membranes. \textbf{B.} Workflow of the experimental approach: the supernatants (‘Sup’) of \textit{B. burgdorferi} cultures vs. medium-only (‘BSK’) controls were analyzed by LC-MS to identify enriched mass features. Any enriched hits were compared against a mass library of potential \pgbb~monomers and dimers from which five candidate \pgbb~fragments were identified. \textbf{C.} Volcano plot of [M+H] features either enriched or depleted compared to medium only. Dark gray dots are mass features that are below the false discovery rate threshold of $p < 0.05$ and are greater than a fold-change of 3. Mass features that correspond to five candidate \pgbb~fragment candidates are indicated in red and labeled with the corresponding \adductone~values. The asterisk marks the \pgbb~fragment candidate with the same [M+H]+ value (992), but with three differently enriched isomers. The datapoint for one of these isomers overlaps with a datapoint for another putative \pgbb~fragment ([M+H]+ = 532).  \textbf{D.} Table of predicted (calculated from our theoretical \pgbb~fragment library, \textbf{Supplementary Dataset 1}) and detected masses of the five candidate \pgbb~fragments identified in the culture supernatants. \textbf{E.} Individual extracted ion chromatograms (EICs) showing the enrichment of the \pgbb~fragment species in the supernatant (Sup) relative to medium-only control (BSK).  The asterisks show the three peaks corresponding to isomeric forms of \pgbb~fragment \#3.}
+    \label{fig: fig1}
+\end{figure*}
+\begin{comment}
+\begin{figure}%[tbhp]
+\centering
+\includegraphics[width=.8\linewidth]{Figures/Figure_1}
+\caption{Placeholder image of Iris with a long example caption to show justification setting.}
+\label{fig:computerNo}
+\end{figure}
+\end{comment}
+
+\vspace{1mm}
+We found that over 2000 mass features displayed a significant ($p < 0.01$, Welch t-test and FDR-corrected) difference abundance (at least three-fold) between culture supernatants and the BSK-II control (\textbf{Figure \ref{fig: fig1}C}). Most of these mass features were underrepresented in the culture supernatants, as expected from nutrients consumed from the BSK-II medium during \textit{B. burgdorferi} growth. Of greater interest were the 270 mass features found to be enriched in the culture supernatants. To examine whether any of them might correspond to \pgbb~fragments, we computationally generated a mass library representing more than 700 permutations of possible \pgbb~monomers and dimers (\textbf{Supplementary dataset 1}, \textbf{Figure \ref{fig: fig1}B}). Of the compounds that were undetectable in medium-only samples but present in culture supernatants, we found five molecules with masses corresponding to predicted monomeric \pgbb~species (\textbf{Figure \ref{fig: fig1}D} and \textbf{Table \ref{tab: muropep_tab}}, PG fragment species \#1-5). One of them (\adductone~= 992) was represented three times in \textbf{Figure \ref{fig: fig1}C} due to the presence of isomers (marked by asterisks in \textbf{Figure \ref{fig: fig1}E}). Two of the identified putative \pgbb~fragment candidates were peptide stem variants of the \pgbb: one with Gly linked to Orn, \AEOAAG~(PG fragment \#1), and the other without Gly, \AEOAA~(PG fragment \#2). Two others were disaccharide-peptides: \ZAEOAAG~(PG fragment \#3) and \ZAEOG~(PG fragment \#4). The remaining molecule consisted of the disaccharide moiety alone: \Z~(PG fragment \#5). All three sugar-containing candidates were found to harbor \NAM~modified with an intramolecular 1,6-anhydro bond (Anh). Plotting the extracted ion counts of the identified molecules demonstrated that all five PG fragment candidates were in quantities below the level of detection in the BSK II-only control, yet present in each of the three replicates culture supernatant samples analyzed (\textbf{Figure \ref{fig: fig1}E}). The identity of each candidate was confirmed by tandem MS fragmentation (\textbf{Figures \ref{fig: figS1}-\ref{fig: figS5}}).
+
+
+\vspace{1mm}
+We found that these \pgbb~monomers accumulated during \textit{B. burgdorferi} growth in BSK-II medium (\textbf{Figure \ref{fig: fig2}A-B}), consistent with these molecules being the products of \pgbb~metabolism. This was observed not only for the strain B31-IR, our clonal derivative of the type strain B31 MI, but also for other \textit{B. burgdorferi} strains, including K2, a clonal derivative of B31 MI amenable for cloning \cite{Fraser1997,Rego2011}, the infectious patient isolate strain 297 \cite{Steere1983}, and the infectious tick isolate N40 \cite{Barthold1988}. A similar growth-dependent collection of \pgbb~fragments was found to accumulate in their culture medium of all four \textit{B. burgdorferi} strains tested (\textbf{Figure \ref{fig: fig2}B}).
+
+\begin{figure}[tbhp]
+    \includegraphics[width=0.45\textwidth]{Figures/Figure_2_Shedding_in_different_strains.pdf}
+    \caption{Various \textit{B. burgdorferi} strains accumulate \pgbb~monomers in their culture supernatants during growth. \textbf{A.}  Growth curves of four indicated \textit{B. burgdorferi} strains. \textbf{B.} Plots showing the accumulation (increase in extracted ion count) of the indicated \pgbb~fragment species in culture supernatants over time. Strains B31-IR, K2, 297, and N40 were sampled once daily during normal growth starting at a density of $1*10^4$ cells/mL. Three biological replicates are included for days 1, 4, and 7, while a single measurement was taken for days 2, 3, 5, and 15. The Grey shade shows the mean (\tmu) $\pm$ two standard deviations (2$\sigma$) for the background detection in the medium-only control (BSK).}
+    \label{fig: fig2}
+\end{figure}
+
+\subsection*{BSK-II medium and one of its components, heat-inactivated rabbit serum, can possess residual PG-hydrolytic activity}
+We noted that the levels of peptide- and disaccharide-only \pgbb~fragments continued to accumulate after the cultures reached stationary phase around day 7 (\textbf{Figure \ref{fig: fig2}B}). In contrast, the levels of disaccharide-peptides often leveled off or decreased in these stationary phase cultures (\textbf{Figure \ref{fig: fig2}B}). While these observations may reflect changes in PG enzymatic activities in stationary phase \textit{B. burgdorferi} cells, it also raised the possibility that the BSK-II medium itself may possess \textit{N}-acetylmuramyl-\scl-alanine amidase activity that results in the cleavage of some shed disaccharide-peptides into their constituent parts (i.e., disaccharide- and peptide-only fragments). BSK-II growth medium contains rabbit serum at a final concentration of 6\% (v/v), with standard heat inactivation of complement activity while preserving growth-promoting factors. Since rabbit serum has been reported to contain \textit{N}-acetylmuramyl-\scl-alanine amidase activity \cite{Valinger1982}, we reasoned that our heat-inactivated rabbit serum may still possess trace of amidase activity. If this were the case, incubation of purified \pgbb~sacculi in complete BSK-II medium or in 100\% heat-inactivated rabbit serum alone would be expected to result in the liberation of peptide-only PG fragments. Indeed, as shown by LC-MS analysis (\textbf{Figure \ref{fig: figS6}}), we detected the accumulation of \AEOG~peptides, the prevalent peptide stem in the mature \pgbb~sacculus (\textbf{Figure \ref{fig: fig1}A}) \cite{Jutras2019}, in both BSK-II and heat-inactivated rabbit serum. These results suggest that at least a fraction of the disaccharide and peptide-only \pgbb~fragments found in the culture supernatant is generated by mammalian enzymes present in the BSK-II medium.
+
+\subsection*{Peptidoglycan synthesis and turnover are largely coupled during B. burgdorferi growth}
+The prevalence of the peptide stem carrying a terminal \scd-Ala-\scd-Ala dimer among the \pgbb~fragments present in culture supernatants was surprising. \scd-Ala-\scd-Ala is predicted to be rare in the mature \pgbb~layer (\textbf{Figure \ref{fig: fig1}}) as it is not even detected in the chromatogram of muramidase-digested \pgbb~sacculi isolated from cell grown in vitro \cite{Jutras2019}. Instead, unlinked peptide stems in the mature \pgbb~are almost exclusively of the form \AEOG~(\textbf{Figure \ref{fig: fig1}A}). This suggests that the larger \AEOAAG~peptide stems present in \pgbb~precursor molecules are rapidly either crosslinked or trimmed by carboxypeptidases (CPases) to remove the terminal \scd-Ala residues and regulate the degree of crosslinking between glycan strands \cite{dePedro2015,Sauvage2008}. Accordingly, the \pgbb~sacculus of a \textit{B. burgdorferi} mutant defective in CPase activity would be expected to contain a higher proportion of peptide stems with terminal \scd-Ala residues.
+
+\vspace{1mm}
+We obtained a B. burgdorferi mutant (strain T08TC493) with a Himar\textit{1} transposon insertion at position 300 downstream of the first codon of the \textit{bb0605} open reading frame, which is predicted to encode a CPase of 406 amino acids \cite{Lin2012}. We purified \pgbb~sacculi from \textit{bb0605}::Himar\textit{1} cells and compares their chemical composition to that of sacculi isolated from the B31-derived parent strain 5A18NP1 following enzymatic digestion of both sacculus preparations using mutanolysin, a muramidase that cleaves the $\beta$(1-4) glycosidic bond between \NAM~and \NAG. The total-ion-count profiles representing digested sacculi from \textit{bb0605}::Himar\textit{1} and its parent differed considerably (\textbf{Figure \ref{fig: fig3}A}). Note that each \pgbb~fragment typically eluted at more than one retention time, reflecting different isomeric forms. The extracted ion count profiles obtained for the parent strain revealed PG monomers primarily harboring peptide stems lacking \scd-Ala residues (variants i and ii in \textbf{Figure \ref{fig: fig3}B}), consistent with the results of a previous \pgbb~digest analysis performed on another \textit{B. burgdorferi} strain \cite{Jutras2019}. In contrast, \textit{bb0605}::Himar\textit{1} sacculi demonstrated decreased abundance of such peptide stem variants (\textbf{Figure \ref{fig: fig3}B}); instead, they were associated with a high proportion of PG monomers carrying longer peptide stems that contained \scd-Ala-\scd-Ala (variants iii and iv in \textbf{Figure \ref{fig: fig3}C}). These data strongly suggest that BB0605 is an \scl,\scd-carboxypeptidase that prunes terminal \scd-Ala residues from \pgbb~peptide stems in wild-type cells. We propose this protein to be renamed \scd-Ala carboxypeptidase A (DacA) based on structural prediction comparison with an  \textit{E. coli} homolog of the same name (\textbf{Figure \ref{fig: figS7}}) \cite{Ghosh2003}. 
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.99\textwidth]{Figures/Figure_3_Pentapeps_Exist_in_Bb_PG_and_Enriched_Midcell.pdf}
+    \caption{BB0605 encodes an \scl,\scd-carboxypeptidase. \textbf{A.} Total ion chromatograms of parent (strain 5A18NP1) vs. \textit{bb0605}::Himar\textit{1} (strain T08TC493) sacculi digested with mutanolysin. Relevant peaks are denoted with numbers corresponding to the most abundant \pgbb~fragment species. \textbf{B.} Plots showing the extracted ion count (EIC) of \ZAEOG~(top) and \NAG-\NAM-\AEOG~(bottom) for the parent vs. \textit{bb0605}::Himar\textit{1} strains as a function of their run time through the liquid chromatography column \textbf{C.} Same as (B) but for \ZAEOAAG~(top) and \NAG-\NAM-\AEOAAG~(bottom). \textbf{D.} Representative fluorescent images of parent cells stained with HADA for 1 and 8 h. Cell outlines were generated by making a mask of the cell in the corresponding phase contrast image, dilating it five times, and creating a contour of the binary mask. Scale bar is 5 \tmu m. \textbf{E.} Same as (D) except that \textit{bb0605}::Himar\textit{1} cells are shown and that the HADA signal for parent cells are contrast-normalized to that of \textit{bb0605}::Himar\textit{1} cells. The look up table on the right applies to images with the same time point. \textbf{F.} Mean linescan intensities of HADA staining in parent vs. \textit{bb0605}::Himar\textit{1} cells. The shaded area represents the standard error of the mean (n = three biological replicates for each time point for which over 200 cells were analyzed per condition).}
+    \label{fig: fig3}
+\end{figure*}
+
+\vspace{1mm}
+The LC-MS experiments with the \textit{bb0605}::Himar\textit{1} mutant also allowed us to determine the retention time of \pgbb~monomers harboring terminal \scd-Ala-\scd-Ala and verify that sacculi of the parent strain do indeed contain a small amount of these monomeric subunit (inset, \textbf{Figure \ref{fig: fig3}C}). This small amount of \scd-Ala-\scd-Ala-containing peptide stems likely correspond to \pgbb~precursor molecules newly incorporated into the existing sacculus (i.e., before crosslinking and processing). This is consistent with our previous work showing that zones of new PG synthesis in \textit{B. burgdorferi} are marked by fluorescent \scd-Ala analogs such as 7-hydroxycoumarincarbonylamino-\scd-alanine (HADA) upon their substitution for native \scd-Ala at the fifth amino acid position of the peptide stem \cite{Jutras2016}. We reasoned that if the HADA signal previously observed in wild-type \textit{B. burgdorferi} cells represents the low level of newly inserted \scd-Ala-\scd-Ala-containing peptide stems in the \pgbb~layer, this signal should increase considerably in the \textit{bb0605}::Himar\textit{1} mutant cells. As we reported previously \cite{Jutras2016}, addition of HADA to parent cell cultures for 1 h resulted in preferential accumulation of HADA signal at midcell due to enriched \pgbb~growth at that site, with occasional polar enrichment derived from division (\textbf{Figure \ref{fig: fig3}D}). We observed the same overall spatial pattern of HADA labeling in \textit{bb0605}::Himar\textit{1} cells, but at a greater level, as shown qualitatively in images (\textbf{Figure \ref{fig: fig3}E}) and by fluorescence signal quantification along the cell length (\textbf{Figure \ref{fig: fig3}F}). This is consistent with an increase level of \scd-Ala-\scd-Ala-containing peptide stems in the \pgbb~layer in the absence of DacA activity. Increasing the time of HADA incorporation from 1 to 8 h (the latter approximating the generation time of \textit{B. burgdorferi}) further increased the fluorescence signal intensity into the \pgbb~due to growth (\textbf{Figure \ref{fig: fig3}D-F}). Altogether, our data suggest that in a wild-type context, a considerable fraction of \pgbb~fragments shed into the environment derived from \scd-Ala-\scd-Ala-containing \pgbb~material that had just been incorporated (and not yet processed), highlighting the spatial coupling between PG synthesis and turnover in \textit{B. burgdorferi}.
+
+
+\subsection*{BB0259 (MltS) contributes to the shedding of \AnhNAM-containing \pgbb~monomers through lytic transglycosylase activity}
+Another characteristic of the released PG fragments we identified was that all three sugar-containing molecules contained \AnhNAM. No corresponding molecules containing \NAM~residues in hydrated/reducing form (i.e., no anhydro bond) were detected in culture supernatants (\textbf{Figure \ref{fig: figS8}}). \AnhNAM-containing PG fragments are the product of bacterial enzymes known as lytic transglycosylases (LTGases) \cite{Holtje1975}. These enzymes cleave the $\beta$(1,4)-glycosidic linkage between \NAG~and \NAM~residues and, in the process, catalyze an intramolecular transglycosylation reaction that leads to the formation of an anhydro bond between C1 and C6 of \NAM~\cite{Dik2017,Holtje1975,Kraft1998,Taylor1975}. When these enzymes act on the polymeric PG, the anhydro bonds they introduced into the PG sacculus prevents the incorporation of another disaccharide-peptide, thereby controlling the average length of glycan strands within the sacculus \cite{Bohrhunter2021,Holtje1975,Kraft1998,Sassine2021,Yunck2016}. Thus, \AnhNAM~residues are found only at the end of glycan strands (\textbf{Figure \ref{fig: fig1}A}) and are, as a consequence, found in low abundance in the PG layer relative to \NAM~residues. The activity of LTGases is also important for degrading large PG turnover products into small soluble fragments \cite{Weaver2022}. 
+
+\vspace{1mm}
+Based on sequence homology searches, \textit{B. burgdorferi} has two putative LTGases \cite{Xu2021}. One of them, encoded by the \textit{bb0259} gene, is required for the motility and spiral morphology of \textit{B. burgdorferi} cells \cite{Xu2021}. This putative LTGase has been proposed to degrade \pgbb~above the site of flagellar basal body insertion into the cytoplasmic membrane to allow flagellar filament assembly across the \pgbb~layer \cite{Xu2021}. Based on the results of gene deletion, the other putative LTGase-encoding gene, \textit{bb0531}, has no apparent effect on flagellar assembly, motility, or cell morphology \cite{Xu2021}. Since the LTGase activity had not previously been demonstrated for either gene product, we obtained \textit{bb0259} and \textit{bb0531} knockout strains \cite{Xu2021} and examined their ability to release \AnhNAM-containing PG fragments into culture media relative to the parental strain. LC-MS revealed that the levels of all three \AnhNAM-containing PG turnover products present in the culture supernatants of the parent strain were considerably lower in the supernatants of the $\Delta$\textit{bb0259} cultures, but not in those of the $\Delta$\textit{bb0531} cultures (\textbf{Figure \ref{fig: fig4}}). Furthermore, the levels of released \AnhNAM-containing molecules were largely restored in the $\Delta$\textit{bb0259} strain expressing wild-type \textit{bb0259} from a shuttle vector (\textbf{Figure \ref{fig: fig4}}), indicating phenotypic complementation. These results provide compelling evidence that \textit{bb0259} encodes a bona fide LTGase that contributes to PG turnover and shedding in \textit{B. burgdorferi}. Based on structural prediction, this \textit{B. burgdorferi} LTGase shares similarity with the cytosolic \textit{E. coli} Stl70 (\textbf{Figure \ref{fig: figS9}}). However, BB0259 differs from Stl70 by being anchored to the inner membrane \cite{Toledo2018}. Therefore, in consultation with Dr. Motaleb whose laboratory at East Carolina University generated the $\Delta$\textit{bb0259} strain used in this study \cite{Xu2021}, we propose the \textit{bb0259} gene to be renamed \textit{mltS} and its product, MltS, for “membrane-bound lytic transglycosylase in spirochetes”.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Figure_4_LTase_Anhydro_Shedding.pdf}
+    \caption{The lytic transglycosylase BB0259 (renamed MltS) is responsible for the accumulation of \AnhNAM-containing \pgbb~species in culture supernatants. For all panels, the medium-only control (BSK) was compared to the culture supernatants the following strains: parent (B31-A), $\Delta$\textit{bb0531}, $\Delta$\textit{bb0259} and $\Delta$\textit{bb0259} complemented by expression of \textit{bb0259} from the \textit{flgB} promoter on a shuttle vector \cite{Xu2021}. \textbf{A.} Plot showing the extracted ion counts (EIC) for \Z~in the culture supernatants of the indicated strain. Dots represent data from three biological replicates and the height of each bar represents the mean. Each EIC value was obtained by integrating the relevant peak for each PGBb fragment species. \textbf{B.} Same as (A) but for \ZAEOG. \textbf{C.} Same as (A) but for \ZAEOAAG}
+    \label{fig: fig4}
+\end{figure*}
+
+\subsection*{The released \pgbb~monomers generate little to no NOD2-dependent inflammatory response in vitro}
+Our findings indicate that the \pgbb~fragments shed by live spirochetes during growth display chemical differences relative to the \pgbb~material expected to be exposed when \textit{B. burgdorferi} dies and lyses. How these chemical variations may affect the host immune response is not entirely clear. For instance, purified anhydro-derivatives of \NAM-peptides have been shown to poor inducers of NOD2 \cite{Chaput2006,Knilans2018}. On the other hand, the \AnhNAM-containing PG fragment \NAG-\AnhNAM-\scl-Ala-\scd-Glu shed by \textit{Neisseria} species has been described as a NOD2 agonist \cite{Harris2024}.
+
+\vspace{1mm}
+To examine this in the context of \textit{B. burgdorferi} pathogenesis, we used a panel of synthetic \pgbb~fragments (30 \tmu M) with varying chemical features \cite{Putnik2024}. For simplicity, we will hereafter refer PG fragments with both \AnhNAM~and peptide moieties to as anhydromuropeptides to distinguish them from the muropeptides that have reducing \NAM~residues. Our panel of synthetic molecules also included the well-known NOD2 agonist muramyl-dipeptide MDP (\NAM-\scl-Ala-\scd-IsoGln) and its inactive isomer MDP-\scl\scl, which serve as positive and negative controls, respectively \cite{Inohara2003,Mo2012}. For human cell immunostimulation, we first used human macrophage-like THP-1 cells differentiated using phorbol 12-myristate 13-acetate (PMA). These cells produce elevated levels of the cytokine interleukin-8 (IL-8) when stimulated with MDP \cite{Jakopin2019}, which we confirmed (\textbf{Figure \ref{fig: fig5}A}). As expected, the negative control MDP-\scl\scl, had no stimulatory effect. All muropeptides (i.e., no anhydro bond) stimulated IL-8 production (\textbf{Figure \ref{fig: fig5}A}). The presence of \NAG~to form the disaccharide-peptide species did not stimulate IL-8 production to the same extent (\textbf{Figure \ref{fig: fig5}A}). Importantly, all the corresponding anhydromuropeptides displayed little to no stimulatory activity of IL-8 production relative to their corresponding muropeptides (\textbf{Figure \ref{fig: figS10}A}, $p = 0.005$). Peptide-only species also had no detectable stimulatory activity (\textbf{Figure \ref{fig: fig5}A}). In a repeated comparative analysis, we included \ZAEOAAG, the shed anhydromuropeptide with the two terminal \scd-Ala (\pgbb~fragment \#3 in \textbf{Figure \ref{fig: fig1}} and \textbf{Table \ref{tab: muropep_tab}}). This additional analysis confirmed that the presence of an anhydro bond considerably reduced the stimulation of IL-8 production irrespective of the presence or absence of the \scd-Ala-\scd-Ala moiety (\textbf{Figure \ref{fig: figS10}B-C}).
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Figure_5_Host_Response_to_Bb_Sup.pdf}
+    \caption{The \textit{B. burgdorferi} peptidoglycan-induced pro-inflammatory response is abrogated by the presence of the 1,6-anhydromuramyl group or the absence of a \NAM~residue. \textbf{A.} Plot showing IL-8 production in differentiated THP-1 cells in the presence of different synthetic PG fragments. Bar height represents the mean. Dots represent data from three biological replicates. The legend in the top right defines the schematics for the synthetic PG fragments. A statistical comparison between the muropeptides and the anhydromuropeptides is presented in \textbf{Figure \ref{fig: figS10}A}. \textbf{B.} Plot showing secreted embryonic alkaline phosphatase (SEAP) activity, a proxy for NF-$\kappa$B activation, measured as absorbance at 655 nm (A$_\text{655}$), in human NOD2 reporter cells (after correction using NOD2-null cells) following stimulation with the indicated molecules.  Each dot represents a different biological replicate and the bar height is the mean of the two replicates. A statistical comparison between the muropeptides and the anhydromuropeptides is presented in \textbf{Figure \ref{fig: figS11}A}.}
+    \label{fig: fig5}
+\end{figure*}
+
+\vspace{1mm}
+To examine these effects in the context of NOD2, we tested the ability of key synthetic \pgbb~fragments to stimulate NF-$\kappa$B in the HEK-Blue human NOD2 (hNOD2) reporter cell line relative to the NOD2-null parental cell line from which it was derived. For this, we used two concentrations (1 and 30 \tmu M) of synthetic \pgbb~fragments. The positive control (MDP) displayed strong NF-$\kappa$B activation at both concentrations (\textbf{Figure \ref{fig: fig5}B}), with a saturating absorbance (A$_\text{655}$) near 1.25 (\textbf{Figure \ref{fig: figS10}D}). As expected, none of the peptides alone resulted in NF-$\kappa$B activation whereas all tested muropeptides resulted in saturating NF-$\kappa$B activation, even at the lowest concentration (\textbf{Figure \ref{fig: fig5}B}). Conversely, exposure to the corresponding anhydromuropeptides resulted in little to no effect (\textbf{Figure \ref{fig: fig5}B}). In all cases, the lowest concentration (1 \tmu M) of a muropeptide generated a stronger response than the highest concentration (30 \tmu M) of the corresponding anhydromuropeptide, indicating that the anhydro bond formation on the \NAM~residue created by MltS decreases NOD2-dependent stimulation by at least 30-fold (\textbf{Figure \ref{fig: figS11}A}, $p = 0.04$). Our results imply that through anhydro bond formation, the LTGase activity of MltS helps live \textit{B. burgdorferi} evade NOD2-dependent detection despite continuously shedding \pgbb~material during growth.
+
+\vspace{1mm}
+The low immunogenicity of the shed \pgbb~monomers questioned the origin of the NOD2-stimulating NF-$\kappa$B activity that our laboratory previously found in the supernatant of \textit{B. burgdorferi} cultures \cite{Jutras2019}. Therefore, we re-examined this activity on hNOD2 reporter cells and found no measurable stimulatory activity from culture supernatants of various \textit{B. burgdorferi} strains compared to the positive control MDP (\textbf{Figure \ref{fig: figS11}B}). The reason for the discrepancy is not clear. It is possible that the previously reported stimulatory activity originated from a gradual leakage of \pgbb~material from the sacculi of lysed or membrane-fragilized spirochetes into the culture over time. Leakage of PG material from dead cells may also explain residual NOD2-stimulatory activity previously reported for culture supernatants of \textit{E. coli} and other bacterial species \cite{Hasegawa2006}. We expect that PG contamination from dead cells may be more variable for \textit{B. burgdorferi} cultures given that their “health” can easily fluctuate with small variations in the individual components of the complex growth medium, which can differ between batches \cite{Callister1990,Wang2004,Yang2001}. Furthermore, one of the essential components of the \textit{B. burgdorferi} growth medium is serum, which contains innate immunity factors (e.g., complement system). If incompletely heat inactivated, these factors may contribute to cell killing or membrane destabilization, which, in turn, could result in the release of immunogenic \pgbb fragments into the culture. However, we cannot rule out the possibility that live \textit{B. burgdorferi} cells do release immunostimulatory \pgbb~material below the detection level of our current MS and hNOD2 reporter assays. Regardless, such \pgbb~material would likely be a minor released product in comparison to the poorly immunogenic \pgbb~turnover products identified in this study.
+
+\subsection*{The levels of host PG hydrolytic activities vary between sera and synovial fluids across Lyme arthritis patients}
+The immunological results indicate that the molecular pattern \NAM-\scl-Ala-\scd-Glu present in the \pgbb~sacculus is readily sensed by NOD2, unlike the \pgbb~fragments shed by live \textit{B. burgdorferi}. Therefore, we propose that the primary immunostimulatory forms of \pgbb~derive from the sacculi of dead spirochetes. Exposed \pgbb~sacculi may then be digested by human hydrolytic enzymes. For instance, lysozyme activity cleaves $\beta$(1,4)-glycosidic bond between \NAM~and \NAG. But unlike MltS and other bacterial LTGases, lysozyme does not produce an anhydro bond on the \NAM~residues and instead releases muropeptides that are pro-inflammatory (as illustrated in \textbf{Figures \ref{fig: fig5}, \ref{fig: figS10},} and \textbf{\ref{fig: figS11}}). Humans can also produce an \textit{N}-acetylmuramyl-\scl-alanine amidase, known as PGLYRP2 \cite{Dziarski2010}, which can abrogate \pgbb-derived inflammatory activity by cleaving between \NAM~and \scl-Ala to release non-immunogenic peptides. Interestingly, human PG degrading activities can vary considerably across tissues and body fluids \cite{Vanderwinkel1995}. 
+
+\vspace{1mm}
+We reasoned that the levels of host PG hydrolytic activity could alter a \pgbb-induced immune response depending on the anatomic sites that \textit{B. burgdorferi} colonizes in patients. To examine this in the context of Lyme arthritis, we analyzed the digestion products of whole \pgbb~sacculi incubated for 0 or 6 h in either joint (synovial) fluid samples ($n = 6$) or serum ($n = 4$) from Lyme arthritis patients (color-coded in \textbf{Figure \ref{fig: fig6}}) using LC-MS. As an additional control, we analyzed the same set of 0 h samples but without \pgbb~sacculi added. LC-MS analysis of the 6 h incubation products revealed predicted mass features of PG fragments in the bodily fluids that were virtually absent in the 0 h incubation samples or in the samples lacking \pgbb~sacculi (\textbf{Figures \ref{fig: fig6}A and \ref{fig: figS12}}). This indicated that both fluids contained PG hydrolytic activities. The release of disaccharides alone or in complex with a peptide indicated the presence of lysozyme activity in both fluids. However, the pattern of released fragments was distinct between sera and joint fluids. Incubation in joint fluids produced largely saccharide-peptides and virtually no peptide- or saccharide-only fragments (\textbf{Figure \ref{fig: fig6}A}). In contrast, incubation of \textit{B. burgdorferi} PG sacculi in sera released not only various saccharide-peptide conjugates but also free saccharides and peptides (\textbf{Figure \ref{fig: fig6}A}). The different enrichments of peptide-only masses in sera versus saccharide-peptide monomers in joint fluids are illustrated in \textbf{Figure \ref{fig: fig6}B}. The results indicate that while both types of fluid display lysozyme activity (based on the presence of disaccharides alone or in complex with peptides), they considerably differ in their PGLYRP2 activity. Serum samples had significant PGLYRP2-like activity that cleaved saccharide-peptides into individual saccharides and peptides, whereas joint fluid samples exhibited little, if any, such activity (\textbf{Figure \ref{fig: fig6}A-B}). This was also true when comparing samples from the same (color-coded) patients. We also noted a wide variability in PG degrading activities across patients for the same type of sample (\textbf{Figure \ref{fig: fig6}A-B}).
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Figure_6_PG_Processing_in_Body_Fluids.pdf}
+    \caption{Incubation of \textit{B. burgdorferi} sacculi in joint fluids and sera of Lyme arthritis patients causes the release of predicted \pgbb~fragments that vary in composition and amount. For all panels, the identities (IDs) of Lyme arthritis patients are color-coded. The same color indicates that the serum and joint fluid were obtained from the same individuals. \textbf{A.} Heatmap of predicted \pgbb~fragment species released from digestion of purified \pgbb~sacculi in six joint fluid samples and four serum samples from Lyme arthritis patients. For all samples, sacculi were incubated with either fluid for 0 (left) and 6 h (right), then the resulting reaction products were analyzed by LC-MS. \pgbb~fragment species were detected by their predicted [M+H] value (\textbf{Table \ref{tab: muropep_tab}}, \textit{Supplementary Dataset 1}). The accompanying table on the left contains the key to interpret the predicted identity of \pgbb~fragment species in the heatmap. Also shown is a schematic illustrating the cut sites for the indicated enzymes. \textbf{B.} Representative quantifications of peptide or sugar-peptide conjugate digestion products in serum and joint fluid samples predicted based on their masses. Each dot was derived from integrating the relevant EIC peak. Mann-Whitney U test was used to determine the $p$ values as the data spanned log distances.  \textbf{C.} ELISA results for either lysozyme or PGLYRP2 for the same joint fluid and serum samples as in (A) and (B). Error bars represent mean $\pm$ standard deviation. $p$ values were obtained using a Welch t-test since the groups had unequal variances and $N$ values.}
+    \label{fig: fig6}
+\end{figure*}
+
+\vspace{1mm}
+To examine whether the observed differences in enzymatic activities are due (at least in part) to differences in protein levels, we measured the abundance of lysozyme and PGLYRP2 in the same patient samples using an enzyme linked immunosorbent assay (ELISA). This assay showed that the levels of lysozyme and PGLYRP2 levels in sera or joint fluids were indeed variable across patients (\textbf{Figure \ref{fig: fig6}C}). In addition, the ELISA confirmed that joint fluids of Lyme arthritis patients were associated with a generally lower level of PGLYRP2 compared to sera (\textbf{Figure \ref{fig: fig6}C}). The overall low level of PGLYRP2 in synovial fluids, and thus presumably in the synovium that \textit{B. burgdorferi} infects, may contribute to the persistence of \pgbb-mediated pro-inflammatory responses within the affected joint tissue of Lyme arthritis patients.
+
+\section*{Discussion}
+Our study identifies the predominant PG fragments present in the supernatant of \textit{B. burgdorferi} cultures (\textbf{Figure \ref{fig: fig1}}). Our immunological assays (\textbf{Figures \ref{fig: fig5}, \ref{fig: figS10},} and \textbf{\ref{fig: figS11}}) suggest that these \pgbb~turnover products have low pro-inflammatory activity attributable to two key chemical features: (1) their peptide stems include an Orn residue at the third amino acid position \cite{Beck1990,Jutras2019} in place of the more common DAP residue found in diderm bacteria \cite{Vollmer2008}, and (2) their \NAM~residues carry an anhydro bond linking C1 and C6. The presence of Orn instead of DAP precludes immune recognition by NOD1 \cite{Chamaillard2003,Girardin2003} whereas the anhydro bond prevents NOD2 detection. Results from a recent study suggest a molecular mechanism for the latter effect, showing that NOD2 is preferentially activated by \NAM-dipeptides that are phosphorylated by the mammalian \textit{N}-acetylglucosamine kinase NAGK \cite{Stafford2022}. Phosphorylation requires the availability of a hydroxyl group on the C6 position of \NAM. The implication, which was not mentioned in the NAGK study \cite{Stafford2022}, is that all anhydromuropeptides produced by bacterial LTGases (including MltS) cannot be phosphorylated by NAGK, as the process of anhydro bond formation eliminates the free hydroxyl group on C6 \cite{Dik2017}. Thus, in addition to limiting the length of glycan strands in the PG sacculus \cite{Bohrhunter2021,Holtje1975,Kraft1998,Sassine2021,Yunck2016}, LTGases also seem to provide an effective means for bacteria to remodel their sacculi during growth without generating PG turnover products detectable by the NOD2 pathway. This conclusion is consistent with previous reports of the immunomodulatory effects of \textit{Helicobacter pylori} and \textit{Neisseria gonorrhoeae} LTGases \cite{Chaput2006,Knilans2018}. Given the wide distribution of genes encoding LTGases across diverse bacterial phyla \cite{Dik2017}, the 1,6-anhydro linkages that these enzymes create in PG turnover products may represent an ancient strategy for evasion of NOD2-dependent immune response. This could particularly be beneficial strategy for Gram-positive bacteria that most often produce Lys-type PG \cite{Vollmer2008}, which, like Orn-type PG do not trigger a NOD1-dependent immune response \cite{Chamaillard2003,Girardin2003}.
+
+\vspace{1mm}
+Whether the shed \pgbb~turnover products identified herein mediate beneficial interactions \textit{B. burgdorferi} and its various hosts in nature remains to be determined. Interestingly, anhydromuropeptides have been shown to act as chemical messengers between certain bacteria and their hosts, triggering cell signaling events unrelated to innate immune clearance \cite{Dworkin2014,Irazoki2019,Jacobs1994}. For example, anhydromuropeptide release has been shown to play a critical role in enabling the bacterium \textit{Vibrio fischeri} to establish its symbiosis with the squid \textit{Euprymna scolopes}. During growth, \textit{V. fischeri} releases 1,6-anhydro-disaccharide-tetrapeptides that help trigger key morphogenic events in the squid’s nascent light organ, ultimately facilitating its colonization by \textit{V. fischeri} \cite{Koropatnick2004}. By analogy, it is possible that 1,6-anhydro-disaccharide-peptides shed by \textit{B. burgdorferi} during its growth in the midgut of a feeding tick may alter the tick vector’s physiology to facilitate \textit{B. burgdorferi} colonization or subsequent transmission. Further experimentation will be required to test this hypothesis. Using the \textit{bb0259} knockout ($\Delta$\textit{mltS}) strain, which sheds little to no anhydromuropeptides (\textbf{Figure \ref{fig: fig4}}), may seem attractive for such studies. However, the $\Delta$\textit{mltS} strain is already expected to be non-infectious due to its cell motility defect \cite{Xu2021}. It has been well-established that motility is critical for \textit{B. burgdorferi}’s life cycle \cite{Li2010,Sultan2013,Sultan2015}. It is also possible that the release of \pgbb~fragments during \textit{B. burgdorferi} growth does not confer any fitness advantage and is merely a consequence of loss of PG recycling genes during the evolution of this spirochete as an obligate parasite, which has led to a reduction in genome size. \textit{E. coli} mutants deficient for PG recycling have no reported fitness cost in laboratory cultures \cite{Jacobs1994}. Furthermore, \textit{B. burgdorferi} seems to reliably scavenge precursors of PG synthesis (\NAG~and amino acids) from its host environment \cite{Barbour1984,DeHart2021}, which may obviate the need for a functional PG recycling pathway.
+
+
+\vspace{1mm}
+Our findings suggest that the pathogenic form of peptidoglycan in Lyme arthritis patients is likely \pgbb~material from dead spirochetes. In a study investigating \textit{B. burgdorferi} burden and viability, all spirochetes identified in Lyme arthritis joint fluid samples were found to be moribund or dead, and spiking joint fluid samples (diluted 1:10 or 1:100) with 10$^\text{2}$, 10$^\text{4}$, or 10$^\text{6}$ cultured \textit{B. burgdorferi} cells was found to result in rapid spirochetes killing \cite{Li2011}. Thus, the joint fluid, which contains high-titer \textit{B. burgdorferi} antibodies, proinflammatory cytokines/chemokines, and complement components \cite{Kannian2007,Steere1979}, constitutes a generally lethal environment for spirochetes, thereby restricting infection to protected niches within the affected joint tissues \cite{Li2011}. We hypothesize that immunogenic \NAM-peptides become exposed to the immune system as \textit{B. burgdorferi} cells lyse from the effects of initial immune responses or antibiotic treatment. Systemic injection of streptococcal PG in rats have shown that cell wall material can persist for weeks to months in the animals and that the localized presence of PG in joint tissues is associated with acute and chronic inflammation \cite{Cromartie1977,Dalldorf1980}. In tissue culture of synovium from a patient with postinfectious Lyme arthritis, HLA-DR-expressing fibroblast-like synoviocytes, the most common cells in the synovial lesion, were found to be IFN$\gamma$-inducible antigen-presenting cells that present autoantigens \cite{Rouse2024}. Moreover, when cultures were primed with IFN$\gamma$ and \pgbb, they secreted much higher levels of IFN$\gamma$, suggesting that the combination of IFN$\gamma$ and \pgbb~may lead to enhanced activation of proinflammatory autoreactive T cells \cite{Rouse2024}. Several host factors may bolster responsiveness to PG-derived immunogens. For instance, increased NOD2 expression has been identified in synovial tissues isolated from patients with postinfectious Lyme arthritis \cite{Lochhead2019}. In addition, the level of PGLYRP2 activity, which is expected to limit NOD2 activation, is low in synovial fluids—and thus presumably within the synovium—relative to serum (\textbf{Figure \ref{fig: fig6}}). Low PGLYRP2 activity, combined with elevated NOD2 level, may predispose joint tissues to \pgbb-mediated inflammation. Furthermore, we observed a large variability in PGLYRP2 and other PG hydrolytic activities across patient samples (\textbf{Figure \ref{fig: fig6}}). Whether this variability contributes to differences in disease progression among patients is an intriguing possibility that will require longitudinal studies to be examined. It is also worth noting that PGLYRP2 activity has been reported to be particularly low in cerebrospinal fluid \cite{Vanderwinkel1995}, raising the possibility that \pgbb~may play a role in neuroborreliosis.
+
+\vspace{1mm}
+Supplementing the inflamed tissues of Lyme arthritis patients with PGLYRP2 activity may, in theory, help mitigate PG-mediated immunopathology. Given the higher PGLYRP2 activity in the serum of Lyme arthritis patients (\textbf{Figure \ref{fig: fig6}}), intraarticular injections of blood-derived products from autologous origin (i.e., obtained from the same individual) may be an effective treatment strategy for PG-induced pathology. For example, platelet-rich plasma injections are often used as orthobiologics to help heal damaged tissues \cite{Beitzel2015,Jeyaraman2024}. Further studies on PGLYRP2 are recommended before exploring this treatment option for antibiotic-refractory Lyme arthritis and other potential PG-induced inflammatory pathologies \cite{Holub2024,Schrijver2001,Schrijver2000}, as PGLYRP2 may have pro-inflammatory activity downstream NOD2 \cite{Clowers2013}.
+
+\section*{Materials and Methods}
+\subsection*{Bacterial strains and growth conditions}
+Strains used in this study are detailed in \textbf{Table \ref{fig: figS2}}. \textit{B. burgdorferi} cells were cultured in complete Barbour-Stoenner-Kelly (BSK)-II medium in humidified incubators at 34\degree C under 5\% \COtwo atmosphere \cite{Barbour1984,Jutras2013,Zuckert2007}. Complete BSK-II contained 50 g/L bovine serum albumin (BSA, Millipore \# 81-003), 9.7 g/L CMRL-1066 (US Biological \# C5900-01), 5 g/L neopeptone (Thermo Fisher \# 211681), 6 g/L HEPES acid (Millipore \# 391338), 5 g/L \scd-glucose (Sigma \# G7021), 2 g/L yeastolate (Difco \# 255772), 0.7 g/L sodium citrate (Sigma \# C7254), 0.8 g/L sodium pyruvate (Sigma \# P5280), 2.2 g/L sodium bicarbonate (Sigma \# S5761) and 0.4 g/L \textit{N}-acetyl-glucosamine (Sigma \# A3286). The pH of the medium was adjusted to 7.6, then supplemented with 60 mL/L heat-inactivated rabbit serum. Heat inactivation involved incubating the serum at 50\degree C in a water bath for 30 min prior to use in medium preparation. Unless explicitly noted, all \textit{B. burgdorferi} cultures were maintained in exponential phase at a density below $5 * 10^7$ cells/mL. Cell density was determined through direct cell counting using disposable Petroff-Hausser chambers and darkfield microscopy as previously described \cite{Takacs2018}. When appropriate, relevant \textit{B. burgdorferi} strains were cultured in the presence of antibiotics at the following final concentrations: 200 \tmu g/mL for kanamycin \cite{Bono2000} (Sigma \# K1377), 40 \tmu g/mL for gentamicin \cite{Elias2003} (Sigma \# G1914), and 100 \tmu g/mL for streptomycin \cite{Frank2003} (Sigma \# S6501).
+
+\subsection*{Verification of the Himar\textit{1} transposon insertion site in the \textit{bb0605}::Himar\textit{1} strain T08TC493}
+\textit{B. burgdorferi} strains 5A18NP1 (B31-A) and T08TC493 (5A18NP1 \textit{bb0605}::Himar\textit{1}) were grown to $5 * 10^7$ cells/mL in 14 mL complete BSK-II. They were then centrifuged at 9000 x g for 5 min at 25\degree C. Cell pellets were then processed using a QIAGEN DNeasy Blood \& Tissue Kit (\# 69504) to isolate genomic DNA (gDNA). The \textit{bb0605} locus was then amplified by PCR using primers 5’- \texttt{AAATGGCTCCTTTTTAATTGTATTGTAAT} -3’ and 5’- \texttt{TTCACCAGGAACTATTATTGTAACAT} -3’. After confirming amplification by agarose gel electrophoresis, the remaining volume of PCR products was processed using a QIAquick PCR Purification Kit (QIAGEN \# 28104) and then the PCR products were sequenced to determine the insertion site of the Himar\textit{1} transposon, which was found to have disrupted the \textit{bb0605} open reading frame 300 bp downstream of the first codon.
+
+\subsection*{Purification of whole \textit{B. burgdorferi} PG sacculi}
+Sacculi were purified in a manner similar to that described previously \cite{Alvarez2016}. Briefly, two flasks of 1 L BSK-II medium were inoculated with \textit{B. burgdorferi} to a starting density of $1 * 10^4$ cells/mL. Once the cultures reached $1 * 10^8$ cells/mL, they were centrifuged at 6000 x g for 20 min at 4\degree C in successive 333 mL batches into the same two 500 ml polypropylene centrifuge tubes (Corning \# 431123). Between each centrifugation, pellets were dislodged by vigorously swirling with the added culture. After the entire culture volume was centrifuged, the pellets were washed three times with cold phosphate-buffered saline (PBS, VWR \# 76371-734), shaking vigorously to achieve a homogenous distribution of cells. The final pellets were stored at -80\degree C overnight. 
+
+\vspace{1mm}
+The following day, the pellets were resuspended in 6 mL chilled PBS and placed on ice. Separately, 6 mL of 10\% w/v sodium dodecyl sulfate (SDS) per 1 L of cells to be processed was brought to a boil. The cell suspension in PBS was then added dropwise to the boiling SDS and allowed to continue boiling for an additional 30 min before being allowed to cool to room temperature. The lysed cell suspension was then transferred to glass culture tubes that were placed in a beaker filled appropriately with Milli-Q \HtwoO. The glass culture tubes were mixed with a stir bar as the water was boiled for 2.5 h on a hotplate. The hotplate was subsequently turned off while the samples continued to be stirred overnight as they re-equilibrated to room temperature.
+
+\vspace{1mm}
+On the third day, the content of each tube was transferred to ultracentrifuge tubes and pelleted at 150,000 x g for 20 min at 20ºC. The pellets were washed four times with 10.5 mL Milli-Q H2O, centrifuging each time at 150,000 x g for 20 min at 20\degree C. After washing, the pellets were resuspended in 1 mL 100 mM Tris-HCl buffer (pH 7.5). Ten microliters of a 20 \tmu g/mL solution of alpha-amylase (Sigma \# 10102814001) were added to each suspension and incubated at 37\degree C for 2 h, shaking at 220 rpm. Next, 1 mL Tris-HCl buffer (pH 7.5), 40 \tmu L 1 M MgSO4, and 2 \tmu L nuclease mix [i.e., 100 \tmu g/mL DNase I (Roche \# 11284932001) + 500 \tmu g/mL RNase A (Roche \# 10109142001) dissolved in Milli-Q water] were added to each sample, followed by a 2 h incubation at 37\degree C while shaking at 220 rpm. Lastly, 50 \tmu L of 50 mM CaCl2 and 100 \tmu L of a 2 mg/mL solution of chymotrypsin (Sigma \# C4129) were added to each sample. The final suspensions were allowed to shake overnight at 220 rpm and 37\degree C. 
+
+\vspace{1mm}
+On the final day, the chymotrypsin was inactivated by adding 200 \tmu L of 10\% SDS and boiling the samples in a water bath for 10 min. The contents of all tubes representing a common sample were combined into a single ultracentrifuge tube and washed six times with 10.5 mL Milli-Q H2O. For each wash, the samples were centrifuged at 150,000 x g for 20 min at 20\degree C in an ultracentrifuge. After the final wash, the pellet was resuspended in 1 mL sterile Milli-Q \HtwoO. Two hundred microliters of the final suspension were transferred to a pre-weighed Eppendorf tube for lyophilization. The dry mass of the lyophilized product was measured to estimate the PG concentration of the starting suspension.
+
+\subsection*{Extraction of \pgbb~fragments from culture supernatants}
+\textit{B. burgdorferi} cultures at the relevant densities (between 10$^\text{4}$ and 10$^\text{8}$ cells/mL) were used (see \textbf{Figures \ref{fig: fig1}, \ref{fig: fig2}, \ref{fig: fig4}, \ref{fig: figS2}, \ref{fig: figS4},} and \textbf{\ref{fig: figS8}} for respective harvest times/cell densities). PG material was extracted using an acetonitrile:methanol extraction method. Briefly, 1 mL of relevant cultures was centrifuged and the supernatant filter-sterilized through a 0.1 \tmu m PVDF syringe filter (Celltreat \# 229740) into a separate tube, which was then stored at -20\degree C until use. One hundred-fifty microliters of culture supernatant was mixed with 450 \tmu L of a 1:1 mixture of acetonitrile:methanol (prepared fresh, chilled to -20\degree C before use), vortexed, and sonicated at room temperature for 10 min in a water bath sonicator. The sample was then placed at -20\degree C for 1 h and vortexed every 30 min. Insoluble debris were pelleted at 15,000 x g for 20 min at 4\degree C, then $\approx$85\% of the supernatant volume was carefully transferred to a new tube. The solution was dried in a Labconco centrivap (\#7810014) at 37\degree C for $\approx$6 h after which the pellets were stored at -20\degree C until use. Samples were resuspended with 150 \tmu L LC-MS grade water (MilliQ \HtwoO) for mass spectrometry.
+
+\subsection*{Digestion of \textit{B. burgdorferi} sacculi for liquid chromatography coupled to mass spectrometry}
+To measure the composition of PG species in the sacculi of parent (5A18NP1) versus bb0605::Himar1 (T08TC493) cells, muramidase digests were prepared consisting of 2 \tmu L 1 mg/mL mutanolysin, 2 \tmu L Tris-HCl (pH 7), $\approx$125 \tmu g PG, and Milli-Q \HtwoO to bring the final volume to 100 \tmu L. These samples were vortexed, spun down, and then incubated overnight at 37\degree C, shaking at 700 rpm. The following day, digests were boiled at 100\degree C for 5 min to denature the mutanolysin. The samples were then centrifuged at 20,000 x g for 15 min at room temperature. The supernatant was diluted 1:10 in Milli-Q \HtwoO, with 150 \tmu L being set aside for LC-MS.
+
+\vspace{1mm}
+To assess the ability of joint fluids or sera from Lyme arthritis patients to digest PG, 5 \tmu L whole sacculi (1.73 mg/mL) from strain T08TC493 was mixed with 90 \tmu L of each body fluid and 5 \tmu L Milli-Q \HtwoO. A negative control consisting only of 45 \tmu L of each patient fluid and 5 \tmu L Milli-Q \HtwoO was included. Half of the samples to which PG was added were immediately set aside to serve as a 0 h time point, while the rest of the samples was incubated at 37\degree C for 6 h, shaking at 750 rpm. These samples were then stored at -20\degree C until they were ready for processing. Once ready, 40 \tmu L thawed samples were mixed with 160 \tmu L 1:1 mixture of acetonitrile:methanol. Following this, samples were processed further for LC-MS as described above.
+
+\vspace{1mm}
+To test whether components of the BSK-II medium degrade PG, 5 \tmu L whole sacculi (1.25 mg/mL) purified from strain B31-IR was mixed with 5 \tmu L Milli-Q H2O and 90 \tmu L BSK-II medium (containing 6\% of heat-inactivated rabbit serum) or 100\% heat-inactivated serum. Replicates of rabbit serum were derived from separate lot numbers to check batch-to-batch variability. The “no \pgbb ” controls contained 45 \tmu L of BSK II or heat-inactivated rabbit serum and 5 \tmu L Milli-Q H2O. Samples were incubated at 37\degree C for 24 h, shaking at 750 rpm. Samples were then further processed for LC-MS as described above.
+
+\subsection*{Liquid chromatography coupled to mass spectrometry}
+LC-MS experiments were performed using an Agilent QTOF 6545, coupled with an Agilent 1290 Infinity II ultra-high-pressure liquid chromatography (UHPLC) device. Samples were separated on a Kinetex Polar C18 column with a 100 {\AA} pore size, 2.6 \tmu m particle size and 2.1 x 100 mm in size (Phenomenex \#00A-4759-AN), with the guard column Securityguard Ultra Holder (Phenomenex \#AJ0-9000). Buffers used were A: LCMS-grade \HtwoO + 0.1\% formic acid (Sigma \# 1590132500) and B: acetonitrile + 0.1\% formic acid (Sigma \# 900686) on a gradient from 0–95\% B. The gradient for the LC experiments is described in \textbf{Table \ref{fig: figS3}}. The column temperature was maintained at 40\degree C during the experiment. Ten microliters of sample were injected per run.
+
+\vspace{1mm}
+Quadrupole time-of-flight (QTOF) MS settings were as follows. All \pgbb~molecules were detected in the positive ionization mode with the instrument mass range set to 70-1700 Da. The scan rate was 1.5 spectra/s. Fragmentor voltage was set to 175 V. For MS/MS fragmentation (\textbf{Figure \ref{fig: figS1}-\ref{fig: figS5}}), the QTOF collision energy for the targeted released muropeptide masses was set as indicated in \textbf{Figure \ref{fig: figS1}-\ref{fig: figS5}}.
+
+\vspace{1mm}
+For analysis, Agilent “.d” files were converted into “.mzML” files using MSConvert \cite{Chambers2012}. The python package pymzmL was used to analyze the mzML files \cite{Bald2012}. Extracted ion chromatograms were constructed using pymzmL’s run function and by searching each scan in the retention time for the candidate molecule +/- 20 ppm, while the total ion chromatograms summed total counts across every run time. Integrated signal for a single species was performed by summing the relevant area under the ion peaks.
+
+\vspace{1mm}
+The initial screen (\textbf{Figure \ref{fig: fig1}C}) was analyzed using the XCMS package in R \cite{Gatto2021,Rainer2022,Smith2006}. Briefly, chromatogram peaks were detected using the function \texttt{findChromPeaks} with parameters defined by the function \texttt{CentWaveParam}. Peak criteria were defined as $ppm=20$, $peakwidth=c(6,30)$, $noise=1000$, $prefilter=c(3,1000)$, and $snthresh=8$. Neighboring peaks were merged using the function \texttt{RefineChromPeaks}, specifying refining parameters with \texttt{MergeNeighboringPeaksParam}. Merging criteria were $expandRT=0.1$, $ppm=2.5$, and $minProp=0.75$. Statistical significance was determined by XCMS’s \texttt{pval} function, which uses a Welch’s two-sample t-test. All significant hits ($p < 0.05$, $fold~change > 3$) were then checked against the theoretical \pgbb~masses in python using the packages numpy and pandas \cite{Harris2020,McKinney2011}. Identified targets were validated based on enrichment of EIC peaks in culture supernatants over BSK-II alone, valid isotopic distributions, and MS/MS fragmentation.
+
+\vspace{1mm}
+To screen for putative PG species (\textbf{Figures \ref{fig: fig6}A and \ref{fig: figS12}}), masses of theoretical \pgbb~fragment species were concatenated into a single vector containing all [M+H]+ and [M+H]2+ values. Extracted ion count (EIC) profiles were constructed for every value between retention times of 1 and 15 min of a 20-min run to exclude nonspecific compounds that wash off the column. Scipy’s \texttt{find\_peaks} function was then used to identify peaks as $prominence=1000$, $width=(6,30)$ in retention time seconds, $rel\_height=1$ to capture width from the base of the peaks of interest, and $threshold=7$ for a minimum signal-to-noise threshold. Identified hits were then verified to have an isotopic abundance distribution of two decaying peaks, the first of which being at least 1000 counts high. The most abundant peak was selected and summed for quantification. Identified masses from this process were then checked against the theoretical \pgbb~library. Identified hits were verified by constructing EICs profiles and checking that the elution profiles were consistent with previous observations. Inconsistent observations were removed from consideration.
+
+\vspace{1mm}
+Heat maps in \textbf{Figures \ref{fig: fig6}A and \ref{fig: figS12}} were compiled from the extracted ion counts, keeping only features that showed at least three-fold enrichment over the negative controls (0 h or no-\pgbb~conditions). The maximum value of extracted ions for features corresponding to identified \pgbb~species in any sample had to be at least 10,000 to be considered.
+
+\subsection*{Microscopy}
+The cell densities of \textit{B. burgdorferi} cultures were determined by dilution in PBS and using an In-Cyto C-Chip disposable hematocytometer (InCyto \# DHC-N01) and darkfield illumination in a Nikon Eclipse E600 microscope with a 40x 0.55 NA Ph2 phase contrast air objective and darkfield condenser lens. For fluorescence microscopy, samples were spotted on 2\% PBS agarose pads \cite{Glaser1997,Jutras2016}; covered with a No. 1.5 coverslip; and sealed with VALAP, a 1:1:1 mixture of Vaseline petroleum jelly (Amazon ASIN B07MD6HJT4), lanolin (Spectrum \# LA109) and paraffin wax (Fisher \# 18-607-738), on all edges. Specimens were imaged using Nikon Eclipse Ti inverted microscopes with a 100x Plan Apo 1.45 NA phase contrast oil objective, Hamamatsu Orca-Flash4.0 V2 CMOS camera, a Sola LE light source (phase contrast), and a Spectra X Light engine. For the acquisition of fluorescent HADA images a DAPI filter set was used (Chroma 49028: ET395/25 ex, dichroic T425lpxr, ET460/50 em). The microscope was controlled by NIS-Elements AR. 
+
+\subsection*{HADA labeling of \textit{B. burgdorferi} cells}
+Strains 5A18NP and T08TC493 were grown to high 10$^\text{6}$ or low 10$^\text{7}$ cells/mL densities. The morning of the experiment, 1 mL of each culture was set aside. Two microliters of 50 mM HADA (Tocris \# 6647) were pipetted into each tube, which was then covered in aluminum foil and mixed by inversion. The samples were incubated at 34\degree C. After 1 h and 8 h of incubation, 200 \tmu L was removed from the samples and placed in a 1.5 mL Eppendorf tube. These 200 \tmu L aliquots were immediately centrifuged at 9,000 x g for 5 min at room temperature, washing two times in 500 \tmu L BSK-II without phenol red. The final pellet was resuspended in 20-100 \tmu L of phenol red-free BSK-II depending on the pellet size. Five microliters were spotted on a 2\% PBS agarose pad for immediate imaging. Phase contrast images were acquired with a 500 ms exposure while HADA fluorescence was imaged with the DAPI filter set using 385 nm excitation at 40\% power with an exposure of 1000 or 250 ms based on the 1 or 8 h of incubation time with HADA, respectively. For analysis, the intensity of cells was multiplied to equalize all time points to 1000 ms for comparison.
+
+\subsection*{Image analysis}
+FIJI \cite{Schindelin2012} was used for preliminary assessment of fluorescence images, then Python was used for the remaining work. First, to facilitate analysis, we loaded large Nikon ND2 files as arrays using the previously published function \texttt{nd2\_to\_array} function \cite{Makela2024}. To create reliable masks of phase contrast images, an adaptive threshold from the Python package OpenCV (cv2.adaptiveThreshold) was applied, excluding objects smaller than 500 square pixels. Any surviving masks were kept and skeletonized. Cell skeletons were used to measure the width along the mask. Cells at least 4 \tmu m long and cell masks less than 0.7 \tmu m wide were selected. The surviving masks were assigned an ID and archived in a Pandas data frame for cell length and fluorescence measurements.
+
+\vspace{1mm}
+Linescans were generated by first measuring the medial axis down the center of the mask using the function \texttt{get\_medial\_axis} generated as before \cite{Papagiannakis2024}. The medial axis is a sub-pixel polynomial fitting from pole-to-pole. The medial axis was then used to measure cell lengths and retrieve the corresponding pixel intensities in the fluorescence image. The medial axis, cell length, and linescan measurements were also saved in the same Pandas data frame corresponding to each cell ID. Demographs were created by constructing a Python dictionary of all cell linescans in a dataset. They were ordered from shortest to longest, then arranged into a numpy array centered at mid-cell. Each line scan was normalized by z-score to show where signal was enriched.
+
+\vspace{1mm}
+To measure fluorescence in each cell, background-subtracted images were produced in Python using a modified background subtraction algorithm \cite{Makela2024}. Phase contrast images were segmented first using OpenCV’s adaptive threshold (cv2.adaptiveThreshold) to remove all potential fluorescing objects. These masks were dilated using Scipy’s binary\_dilation function with ten iterations \cite{Virtanen2020}. The dilated objects were then removed from the fluorescent image. Surviving pixels were binned and averaged using a rolling window across the x and y dimensions, then smoothed with a Gaussian kernel to obtain an estimated “background-only” image. Cell masks were used to measure the mean intensity (integrated intensity per unit pixel area) from every cell in the background-subtracted images.
+
+\subsection*{Human subject samples}
+The study patients with Lyme arthritis met the criteria of the Centers for Disease Control and Prevention for \textit{B. burgdorferi} infections \cite{Wharton1990}. They had knee swelling and pain and positive antibody responses to \textit{B. burgdorferi}, as determined by ELISA and Western blot. The patients were treated according to the guidelines of the Infectious Diseases Society of America \cite{Lantos2021}. They had persistent arthritis despite one to two months of oral antibiotic therapy (usually doxycycline), followed by an additional one month of intravenous (IV) antibiotic therapy (ceftriaxone). One patient had the resolution of arthritis one month after IV antibiotic therapy, whereas the other five had postinfectious arthritis lasting three to nine months after IV therapy. In three of the six patients, synovial fluid samples were obtained prior to starting IV antibiotic therapy. In the remaining three patients, synovial fluid samples were obtained prior to starting DMARD therapy (n = 2) or synovectomy (n = 1). In four of the six patients, concomitant serum samples were available.  
+
+\vspace{1mm}
+Serum and joint fluid samples were collected and then centrifuged at 300 x g for 10 min, followed by another centrifugation at 3000 x g for 10 min to remove cells and cell debris as previously described \cite{Lochhead2017}. All samples were stored at -80\degree C and did not undergo more than two freeze-thaw cycles. Before each use, samples were centrifuged at 2,000 x g for 1 min to pellet potential remaining debris.
+
+\subsection*{Enzyme linked immunosorbent assays}
+Enzyme linked immunosorbent assays (ELISA) were carried out using the PGLYRP2 ELISA Kit (MyBioSource \# MBS2024542) and the Human Lysozyme ELISA Kit (Abcam \# ab267798) using the manufacturer’s protocol. The patient samples for PGLYRP2 detection were diluted 200-fold in PBS to fall within the dynamic range of the kit standards, while the samples for lysozyme detection were diluted 12,000-fold in PBS.
+
+\subsection*{THP-1 and NOD2 reporter cell stimulation}
+The panel of synthetic \pgbb~molecules used for the immunological assays were synthesized as previously described \cite{Putnik2024}. Two assays were performed to examine the immunostimulatory activities of these molecules. In the first one, THP-1 cells (ATCC \# TIB-202) were grown in a humidified incubator at 37\degree C under a 5\% \COtwo atmosphere in complete RPMI (cRPMI) containing 10\% fetal bovine serum (FBS) + 1\% Pen-Strep (Gibco RPMI 1640 \# 11875119; R\&D systems FBS – premium select, heat inactivated \# S11550H; Gibco Pen-Strep \# 15140122), with cell densities maintained between $1 * 10^5$ and $1.5 * 10^6$ cells/mL. For \pgbb~stimulation experiments, THP-1 cells were differentiated into macrophage-like cells in the presence of phorbol 12-myristate 13-acetate (PMA, InvivoGen \# tlrl-pma). More specifically, cells were diluted to $1.25 * 10^6$ cells/mL in cRPMI supplemented with 40 nM PMA, and 200 \tmu L of the resulting cell suspension were added to the appropriate wells of a tissue culture-treated, flat-bottom 96-well plate (Fisher Scientific \# FB012931) for a total of $2.5 * 10^5$ cells/well. After 48 h, the PMA-containing medium was removed by aspiration, 200 \tmu L of fresh cRPMI lacking PMA was added to each well, and the cells were allowed to rest for 72 h. Following this rest period, the medium in each well was exchanged for serum-free RPMI and the cells were starved in this manner for 4 h prior to \pgbb~stimulation. At the end of this interval, the serum-free medium was removed from each well using an aspirating pipette and then replaced with cRPMI containing a synthetic \pgbb~fragment at a final concentration of 30 \tmu M. To account for differences in stock concentrations, each of the different potential ligands tested was first diluted in ultrapure water (American Bio \# AB02123) to a concentration of 1 mM prior to further dilution to 30 \tmu M in cRPMI. After a 24-h stimulation period, the supernatant was harvested from each well and immediately frozen at -80\degree C. The supernatants were subsequently used for cytokine profiling by Luminex assay performed at Eve Technologies.
+
+\vspace{1mm}
+For the NOD2 reporter assay, HEK-Blue NOD2-overexpressing (hNOD2) and NOD2-deficient (Null2) cells (InvivoGen \# hkb-hnod2v2 and hkb-null2, respectively) were maintained according to the manufacturer’s recommendations. In brief, both cell lines were grown in Dulbecco's modified Eagle’s medium (Sigma-Aldrich \# D5796) containing 4.5 g/L glucose and 2 mM L-glutamine, and further supplemented with 10\% FBS, 1\% Pen-Strep, and 100 \tmu g/mL Normocin (InvivoGen \# ant-nr). Selective antibiotics were used in culturing both cell lines, beginning with the third passage after revival from frozen stock. Blasticidin (30 \tmu g/mL, InvivoGen \# ant-bl) and Zeocin (100 \tmu g/mL, InvivoGen \# ant-zn) were added to hNOD2 cell cultures, while only Zeocin was used for Null2 cell cultures. For \pgbb~stimulation and measurement of the resulting NOD2-dependent NF-$\kappa$B activation by secreted embryonic alkaline phosphatase (SEAP) assay, 20 \tmu L of each synthetic PG molecule was prepared by dilution in ultrapure water to a stock concentration of 300 \tmu M and added to the appropriate wells of a tissue culture-treated, flat-bottom 96-well plate to the indicated final concentrations. The hNOD2 and Null2 cells were detached from the T75 flasks in which they had been expanded by exchanging the growth medium in each for 5 mL pre-warmed PBS and gently tapping the flask sides. Cells were fully resuspended by gentle pipetting and then counted using a disposable hemocytometer. Pre-warmed HEK-Blue Detection medium (InvivoGen \# hb-det2; reconstituted according to manufacturer’s recommendations) was then added to each cell suspension to achieve a final cell density of $2.8 * 10^5$ cells/mL. Next, 180\tmu L of the resulting cell suspension (or a total of approximately $5 * 10^4$ cells) were added to the appropriate wells of the 96-well plate described above such that the final PG fragment concentration in each well was either 1 or 30 \tmu M. The plate was then placed at 37\degree C in a humidified incubator containing 5\% \COtwo and SEAP production was assessed by absorbance measurement at 655 nm (Molecular devices, SpectraMax i3X) after 16 and 22 h of incubation.
+
+\vspace{1mm}
+For \textbf{Figure \ref{fig: fig5}B}, about 50,000 HEK-Blue hNOD2 reporter cells (eighth passage) in a volume of 180 \tmu L HEK-Blue Detection medium were added to each well containing 20 \tmu L synthetic MDP (Invivogen \# tlrl-mdp) diluted in ultrapure water such that the final MDP concentration ranged from 5 nM to 100 \tmu M across a row of a 96-well plate. Plates were incubated for 16 h in a humidified incubator at 37\degree C and 5\% CO2, with subsequent absorbance measurements being obtained at 655 nm.
+
+\vspace{1mm}
+To prepare \textit{B. burgdorferi} culture supernatants for HEK-Blue hNOD2 reporter stimulation (\textbf{Figure \ref{fig: figS11}B}), \textit{B. burgdorferi} starter cultures were used to inoculate 10 mL complete BSK-II medium (supplemented with 200 \tmu g/mL kanamycin) to obtain a starting cell density of $\approx$10$^\text{4}$ cells/mL. As a medium-only control, 10 mL complete BSK-II medium (also supplemented with kanamycin) was subjected to the same conditions (humidified 34\degree C and 5\% \COtwo environment with tube cap loosened) as \textit{B. burgdorferi} cultures. Once the cultures reached a spirochete density of $\approx$10$^\text{7}$ cells/mL, cells were pelleted, and supernatants transferred to fresh tubes that were immediately stored at -80\degree C. Prior to application to HEK-Blue hNOD2-expressing reporter cells (fifth passage), thawed supernatants were passed through a 0.1 \tmu m PES membrane filter (Foxx Life Sciences \# 146-4113-RLS). HEK-Blue reporter cells were stimulated as before by exposure to 20 \tmu L \textit{B. burgdorferi} culture supernatant, complete BSK-II medium alone, MDP dissolved in ultrapure water (1 \tmu M final concentration), or ultrapure water alone.
+
+\subsection*{Computational analyses}
+For all custom-made analyses, R and Python scripts are available on the Jacobs-Wagner lab Github (\seqsplit{https://github.com/JacobsWagnerLab/published/McCausland\_et\_al\_2024}). Python packages numpy, scipy, scikit-image, seaborn, and pandas used in this study have previously been described \cite{Harris2020,McKinney2011,vanderWalt2014,Virtanen2020,Waskom2021}. The R package XCMS was previously described \cite{Smith2006}.
+
+\subsection*{Data availability}
+The MS data and microscopy images will soon be available on the GlycoPOST and Biostudies repositories, respectively. Code for image and MS data analysis can be downloaded from the Jacobs-Wagner lab Github site (\seqsplit{https://github.com/JacobsWagnerLab/published/McCausland\_et\_al\_2024}).
+
+\begin{acknowledgements}
+We would like to thank Drs. Jonathon Z. Long, Veronica L. Li, Yuqin Dai, and Mengying Fu for their guidance on the mass spectrometry experiments. We also thank the Stanford Nucleus at Sarafan ChEM-H for access to mass spectrometry equipment. We are also grateful to the Jacobs-Wagner Laboratory for support, discussion, and critical reading of the manuscript. We would also like to thank the members of the Rego and Bockenstedt laboratories at Yale School of Medicine for providing lab space, equipment, and expertise to Z.A.K. to facilitate this work. This research was supported in part by funding from the James D. Jamieson and Family M.D.-Ph.D. Scholarship Fund at Yale University (to Z.A.K), the Medical Scientist Training Grant T32 GM007205 from the National Institute of General Medical Sciences, National Institutes of Health (to Z.A.K), the Stanford Bio-X Interdisciplinary Initiatives Seed Grants Program (IIP) [R10-9] (to C.J.-W.), the National Institutes of Health (R01GM138599 to C.L.G). C.J.-W. is an investigator of the Howard Hughes Medical Institute. Portions of this work were originally part of the dissertation of one of the co-first authors (Z.A.K.).
+\end{acknowledgements}
+
+\section*{Bibliography}
+\bibliography{refs}
+%% You can use these special %TC: tags to ignore certain parts of the text.
+%TC:ignore
+%the command above ignores this section for word count
+\onecolumn
+\pagebreak
+\begin{center}
+\textbf{\large Supplemental Materials: Bacterial and host enzymes modulate the inflammatory response produced by the peptidoglycan of the Lyme disease agent}
+\end{center}
+%%%%%%%%%% Merge with supplemental materials %%%%%%%%%%
+%%%%%%%%%% Prefix a "S" to all equations, figures, tables and reset the counter %%%%%%%%%%
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{page}{1}
+\makeatletter
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thetable}{S\arabic{table}}
+
+%\renewcommand{\bibnumfmt}[1]{[S#1]}
+%\renewcommand{\citenumfont}[1]{S#1}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Supplementary Information %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{-15cm}
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S1_AEOAAG_MSMS.pdf}
+    \caption{\textbf{Fragmentation of \pgbb~fragment \AEOAAG}. \textbf{A.} Schematic outlining each amino acid in \AEOAAG, along with notations of the origin of each identified fragment after MS/MS. \textbf{B.} EIC profile of the identified [M+H]+ profile. The peak of interest is shaded in red. \textbf{C.} The MS2 spectrum at the run time where the EIC peak in (B) is at maximum intensity. The collision energy used to fragment this molecule is indicated, and each identified fragment is marked with a letter corresponding to the schematic in (A).}
+    \label{fig: figS1}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S2_AEOAA_MSMS.pdf}
+    \caption{\textbf{Fragmentation of \pgbb~fragment \AEOAA}. \textbf{A.} Schematic outlining each amino acid in \AEOAA, along with notations of the origin of each identified fragment after MS/MS. \textbf{B.} EIC profile of the identified [M+H]+ profile. The peak of interest is shaded in red. \textbf{C.} The MS2 spectrum at the run time where the EIC peak in (B) is at maximum intensity. The collision energy used to fragment this molecule is indicated, and each identified fragment is marked with a letter corresponding to the schematic in (A).}
+    \label{fig: figS2}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S3_ZAEOAAG_MSMS.pdf}
+    \caption{\textbf{Fragmentation of \pgbb~fragment \ZAEOAAG}. \textbf{A.} Schematic outlining the sugars and amino acids in \ZAEOAAG, along with notations of the origin of each identified fragment after MS/MS. \textbf{B.} EIC profile of the identified [M+H]+ profile of peak 1, shaded in red. \textbf{C.} The MS2 spectrum at the run time where EIC peak 1 in (B) is at maximum intensity. \textbf{D.} EIC profile of the identified [M+H]+ profile of peak 2, shaded in red. \textbf{E.} The MS2 spectrum at the run time where EIC peak 2 in (D) is at maximum intensity. \textbf{F.} EIC profile of the identified [M+H]+ profile of peak 3, shaded in red. G. The MS2 spectrum at the run time where EIC peak 3 in (F) is at maximum intensity. For (C), (E), and (G), the collision energies used to fragment this molecule are noted in the titles, and each identified fragment is marked with a letter corresponding to the schematic in (A).}
+    \label{fig: figS3}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S4_ZAEOG_MSMS.pdf}
+    \caption{\textbf{Fragmentation of \pgbb~fragment \ZAEOG}. \textbf{A.} Schematic outlining the sugars and amino acids in \ZAEOG, along with notations of the origin of each identified fragment after MS/MS. \textbf{B.} EIC profile of the identified [M+H]+ profile. The peak of interest is shaded in red. \textbf{C.} The MS2 spectrum at the run time where the EIC peak in (B) is at maximum intensity. The collision energy used to fragment this molecule is indicated, and each identified fragment is marked with a letter corresponding to the schematic in (A).}
+    \label{fig: figS4}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S5_Z_MSMS.pdf}
+    \caption{\textbf{Fragmentation of \pgbb~fragment \Z}. \textbf{A.} Schematic outlining each sugar in \Z, along with notations of the origin of each identified fragment after MS/MS. \textbf{B.} EIC profile of the identified [M+H]+ profile. The peak of interest is shaded in red. \textbf{C.} The MS2 spectrum at the run time where the EIC peak in (B) is at maximum intensity. The collision energy used to fragment this molecule is indicated, and each identified fragment is marked with a letter corresponding to the schematic in (A).}
+    \label{fig: figS5}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S6_BSK_has_PGLYRP2_activity.pdf}
+    \caption{\textbf{\textit{N}-acetylmuramyl-\scl-alanine amidase activity present in BSK-II and heat-inactivated rabbit serum}. BSK-II or heat-inactivated rabbit serum was incubated at 37\degree C in the presence or absence of purified \pgbb~sacculi for 24 h prior to LC-MS. \textbf{A.} Schematic of \textit{N}-acetylmuramyl-\scl-alanine amidase activity when mixed with purified \pgbb. Cut sites by a \textit{N}-acetylmuramyl-\scl-alanine amidase are shown by red curvy lines. \textbf{B.} Digestion in BSK-II. \textbf{C.} Digestion in heat-inactivated rabbit serum (100\%). For B-C, plots show the extracted ion count (EIC) for the \AEOG, the predominant expected digestion product of \pgbb~sacculi by a \textit{N}-acetylmuramyl-\scl-alanine amidase. For both panels, the bar shows the mean and the dots represent the data of two biological replicates of BSK-II media and rabbit sera sourced from different lot numbers.}
+    \label{fig: figS6}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S7_BB0605_alignment.pdf}
+    \caption{\textbf{Structural prediction comparison between \textit{B. burgdorferi} BB0605 and \textit{E. coli} DacA.} \textbf{A.} Predicted structure of \textit{B. burgdorferi} BB0605 using Foldseek \cite{Kempen2023} \textbf{B.} Structure of \textit{E. coli} DacA obtained from the Protein Data Bank (PDB) \cite{Berman2000,Nicholas2003}. \textbf{C.} Alignment of BB0605 and DacA, performed using ChimeraX \cite{Meng2023}. The root mean square deviation (RMSD) from alignment is presented, along with the alignment algorithm used.}
+    \label{fig: figS7}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S8_Anhydros_Only_Are_Enriched.pdf}
+    \caption{\textbf{Assessment of MurNAc-containing PG species in culture supernatants of \textit{B. burgdorferi} strain K2.} Plots showing the extracted ion counts of \NAG-\NAM, \NAG-\NAM-\AEOG, and \NAG-\NAM-\AEOAAG~in culture supernatants (Sup) compared to medium alone (BSK).}
+    \label{fig: figS8}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S9_LTgase_Slt70_alignment.pdf}
+    \caption{\textbf{Structural prediction comparison between \textit{B. burgdorferi} BB0259 and \textit{E. coli} Slt70}. \textbf{A.} Predicted structure of BB0259 using Foldseek \cite{Kempen2023}. \textbf{B.} Structure of \textit{E. coli} Slt70 obtained from the Protein Data Bank (PDB) \cite{Berman2000,Asselt1999}. \textbf{C.} Alignment of BB0259 and Slt70 using ChimeraX \cite{Meng2023}. The root mean square deviation from alignment is presented, along with the alignment algorithm used.}
+    \label{fig: figS9}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S10_PG_stimulation_controls.pdf}
+    \caption{\textbf{Stimulation of THP-1 and hNOD2 reporter cells}. \textbf{A.} Comparison between MurNAc-containing and AnhMurNAc-containing species in \textbf{Figure \ref{fig: fig5}A}. The schematic of the \pgbb~species in each group is shown, along with a legend that defines each chemical moiety. Dots represent the means of each \pgbb~compound. Bar heights represent the means for each compound group. The groups were compared using a Welch’s t-test to account for different standard deviations and $N$ values. \textbf{B.} Plot showing IL-8 production in differentiated THP-1 cells in the presence of the indicated \pgbb~fragments. The error bars represent standard deviation of the mean, and bar height represents the mean. Dots represent data from three biological replicates. \textbf{C.} Comparison of \NAM-containing and \AnhNAM-containing species in (B), including MDP as in (A). Dots represent the means of each \pgbb~compound. Bar heights represent the means for each compound group. The groups were compared using a Welch’s t-test to account for different standard deviations and $N$ values. \textbf{D.} Dose-response curve of hNOD2 reporter cells to MDP in MilliQ \HtwoO. The line connects the mean measurements of each concentration, and the dots represent technical replicates.}
+    \label{fig: figS10}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S11_Bb_supernatant_is_inert_against_NOD2.pdf}
+    \caption{\textbf{Absence of detectable stimulation of hNod2 reporter cells by culture supernatants of various \textit{B. burgdorferi} strains}. \textbf{A.} NOD2 data from \textbf{Figure \ref{fig: fig5}B} with \pgbb~grouped based on the presence of a \NAM or \AnhNAM, as shown by the schematics and the legend. Dots represent the means of each \pgbb~compound. Bar heights represent the means for each compound group. The lines above the plot show pairwise comparisons between each group using Welch’s t-tests to account for different standard deviations and $N$ values. The resulting $p$-values were adjusted using a Bonferonni correction for multiple comparisons.  \textbf{B.} Plot showing the SEAP activity of hNOD2 reporter cells (used after fifth passage) following 16-h exposure to 1 \tmu M MDP (positive control) compared to complete BSK-II medium (negative control), or supernatants of cultures in stationary phase for three days. Each dot is a technical replicate, and the height of each bar represents the mean.}
+    \label{fig: figS11}
+\end{figure*}
+
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{Figures/Figure_S12_PG_degradation_without_sacculi.pdf}
+    \caption{\textbf{Patient joint fluid and serum digestions of purified \pgbb~sacculi}. This heatmap is similar to \textbf{Figure \ref{fig: fig6}A} except that negative control are samples in which no sacculi were added. Samples were incubated with MilliQ \HtwoO~(- \pgbb~sacculi) or with \pgbb~sacculi (+ \pgbb~sacculi) for 6 h, then the resulting reaction products were analyzed by LC-MS. \pgbb~species were detected by their predicted [M+H] value (\textbf{Supplementary Dataset 1}). All samples were derived from Lyme arthritis patients whose identities (IDs) are color-coded as in \textbf{Figure \ref{fig: fig6}A}. The accompanying table contains the key to interpret the \pgbb~fragment species in the heatmap.}
+    \label{fig: figS12}
+\end{figure*}
+
+\begin{comment}
+\pagebreak
+\begin{figure*}[ht!]
+    \centering
+    \includegraphics[width = \textwidth]{figures/Figure_}
+    \caption{}
+    \label{fig: fig}
+\end{figure*}
+\end{comment}
+\pagebreak
+\include{common_muropeptide_table}
+
+
+\vspace{10mm}
+\begin{table}[ht!]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \caption{\textbf{\textit{B. burgdorferi} strains used in this study.}}
+    \begin{tabular}{m{3.5cm}<{\centering\arraybackslash}
+    m{6.5cm}<{\arraybackslash}
+    m{2cm}<{\centering\arraybackslash}}
+    \hlineB{2}
+    Strain & Relevant genotype/description & Source \\
+    \hline
+    B31 MI & Infectious, mouse isolate & \cite{Fraser1997} \\
+    A3 & B31 MI \textit{cp9$^-$} & \cite{Elias2002} \\
+    K2 & B31-A3-68 lp25[\textit{bbe02}::P$_\textit{flgB}$-\textit{aphI}] lp56$^-$ & \cite{Rego2011} \\
+    S9 & B31-A3-68 lp25[\textit{bbe02}::P$_\textit{flgB}$-\textit{aphI}] lp56$^-$ & \cite{Rego2011} \\
+    N40 & Infectious, tick isolate & \cite{Barthold1988} \\
+    N40 D10/E9 & Clonal isolate of N40 & \cite{Leong1992} \\
+    CJW\_Bb324 & N40 D10/E9 lp25[\textit{bbe02}::\textit{Bbluc-aadA}] & \cite{Chan2015}\\
+    297 & Infectious, patient isolate & \cite{Steere1983} \\
+    5A18NP1 & B31, clone 5A18NP1 & \cite{Kawabata2004} \\
+    T08TC493 & B31, clone 5A18Np1 chr[\textit{bb0605}::\textit{Tn}] & \cite{Lin2012} \\
+    B31-A & Wild type, noninfectious, high passage & \cite{Xu2021} \\
+    $\Delta$\textit{bb0531} & B31-A chr[\textit{bb0531}::P$_\textit{flgB}$-\textit{aphI}] & \cite{Xu2021} \\
+    $\Delta$\textit{bb0259} & B31-A chr[\textit{bb0259}::P$_\textit{flgB}$-\textit{aphI}] & \cite{Xu2021} \\
+    \textit{bb0259}$^\textit{com}$ & Bb612//pBSV2G-P$_\textit{flgB}$-BB0259 & \cite{Xu2021} \\
+    B31 MI IR (B31 IR) & B31 MI, clonal isolate & \cite{Takacs2022} \\
+    \hlineB{2}
+   \end{tabular}
+   \label{tab: strains}
+\end{table}
+
+\vspace{10mm}
+\begin{table}[ht!]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \captionsetup{width = 0.35\textwidth}
+    \caption{\textbf{The LC gradient for LC-MS experiments}. Buffers A and B are noted in the methods.}
+    \begin{tabular}{|r|c|c|c|}
+        \hline
+        Time (min) & A\% & B\% & Flow (ml/min) \\
+        \hline
+        0 & 100 & 0 & 0.2 \\
+        \hline
+        3 & 100 & 0 & 0.2 \\
+        \hline
+        7 & 90 & 10 & 0.2 \\
+        \hline
+        15 & 80 & 20 & 0.2 \\
+        \hline
+        17 & 5 & 95 & 0.2 \\
+        \hline
+        17.5 & 5 & 95 & 0.4 \\
+        \hline
+        19.5 & 5 & 95 & 0.4 \\
+        \hline
+        20.5 & 100 & 0 & 0.4 \\
+        \hline
+        24 & 100 & 0 & 0.4 \\
+        \hline
+        24.5 & 100 & 0 & 0.2 \\
+        \hline
+        26 & 100 & 0 & 0.2 \\
+        \hline
+    \end{tabular}
+    \label{tab: tabS3}
+\end{table}
+
+\begin{comment}
+\captionsetup*{format=largeformat}
+\section{Something about something} \label{note:Note1} 
+\Blindtext
+\end{comment}
+%TC:endignore
+%the command above ignores this section for word count
+
+\end{document}
